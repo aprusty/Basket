@@ -75,7 +75,7 @@ public class ProcessBasket {
 	 */
 	private float getPriceOfSimpleOffers(BasketItem basketItem) throws DiscountNotFoundException {
 		String discountCode = basketItem.getItem().getDiscount();
-		Discount discount = DiscountMapping.getDiscount(discountCode);
+		Discount discount = DiscountMapping.getDiscountModel(discountCode);
 		
 		if (discount == null) 
 			throw new DiscountNotFoundException("Discount details not found for discount Code: " + discountCode);
@@ -93,7 +93,7 @@ public class ProcessBasket {
 	 */
 	private float getPriceOfComplexOffers(List<BasketItem> basketItems) throws DiscountNotFoundException {
 		String parentDiscountCode = basketItems.get(0).getItem().getParentDiscount();
-		Discount discount = DiscountMapping.getDiscount(parentDiscountCode);
+		Discount discount = DiscountMapping.getDiscountModel(parentDiscountCode);
 		
 		if (discount == null) 
 			throw new DiscountNotFoundException("Parent Discount details not found for discount Code: " + parentDiscountCode);
