@@ -27,6 +27,21 @@ public class CombinedFixedPrice implements Discount {
 		this.combinedValue = totalValue;
 	}
 
+	/** 
+	 * Copy constructor. No need for defensive copy as we are only dealing with immutable members
+	 * @param oldObject
+	 */
+	public CombinedFixedPrice(CombinedFixedPrice oldObject) {
+		this(oldObject.getDiscountId1(), 
+				oldObject.getDiscountId2(), 
+				oldObject.getDiscountId3(), 
+				oldObject.getCombinedValue());
+	}
+	
+	public CombinedFixedPrice getNewCopy(Discount oldObject) {
+		return new CombinedFixedPrice((CombinedFixedPrice) oldObject);
+	}
+	
 	public void setRelatedItems(List<BasketItem> items) {
 		this.basketItems = items;
 	}
@@ -95,4 +110,21 @@ public class CombinedFixedPrice implements Discount {
 		return total;
 	}
 
+	public String getDiscountId1() {
+		return discountId1;
+	}
+
+	public String getDiscountId2() {
+		return discountId2;
+	}
+
+	public String getDiscountId3() {
+		return discountId3;
+	}
+
+	public float getCombinedValue() {
+		return combinedValue;
+	}
+
+	
 }

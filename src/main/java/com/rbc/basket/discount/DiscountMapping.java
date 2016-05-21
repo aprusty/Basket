@@ -28,7 +28,12 @@ public class DiscountMapping {
 		discountMappings.put("5000", new CombinedFixedPrice("5001", "5002", "5003", 3.00f));
 	 }
 	
+	/**
+	 * @param discountId
+	 * @return : returns a new copy everytime as these model classes are not immutable
+	 */
 	public static Discount getDiscount(String discountId) {
-		return discountMappings.get(discountId);
+		Discount discount = discountMappings.get(discountId);
+		return discount.getNewCopy(discount);
 	}
 }

@@ -10,4 +10,5 @@ import com.rbc.basket.BasketItem;
 public interface Discount {
 	void setRelatedItems(List<BasketItem> items);
 	float discountedValue();
+	Discount getNewCopy(Discount oldObject);
 }

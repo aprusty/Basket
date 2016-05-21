@@ -19,6 +19,22 @@ public class FixedDiscount implements Discount {
 		this.amount = amount;
 	}
 
+	/** 
+	 * Copy constructor. No need for defensive copy as we are only dealing with immutable members
+	 * @param oldObject
+	 */
+	public FixedDiscount(FixedDiscount oldObject) {
+		this(oldObject.getType(), oldObject.getAmount());
+	}
+	
+	public FixedDiscount getNewCopy(Discount oldObject) {
+		return new FixedDiscount((FixedDiscount) oldObject);
+	}
+	
+	public void setRelatedItems(List<BasketItem> items) {
+		basketItem = items.get(0);
+	}
+	
 	public float discountedValue() {
 		float discountedValue = 0;
 		float unitPrice = basketItem.getItem().getUnitPrice();
@@ -32,8 +48,12 @@ public class FixedDiscount implements Discount {
 		return discountedValue;
 	}
 
-	public void setRelatedItems(List<BasketItem> items) {
-		basketItem = items.get(0);
+	public float getAmount() {
+		return amount;
 	}
 
+	public DiscountType getType() {
+		return type;
+	}
+		
 }

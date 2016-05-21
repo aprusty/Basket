@@ -21,6 +21,18 @@ public class BuySomeQuantityPayForSomeQuantity implements Discount {
 		this.payQuantity = payQuantity;
 	}
 
+	/** 
+	 * Copy constructor. No need for defensive copy as we are only dealing with immutable members
+	 * @param oldObject
+	 */
+	public BuySomeQuantityPayForSomeQuantity(BuySomeQuantityPayForSomeQuantity oldObject) {
+		this(oldObject.getBuyQuantity(), oldObject.getPayQuantity());
+	}
+	
+	public BuySomeQuantityPayForSomeQuantity getNewCopy(Discount oldObject) {
+		return new BuySomeQuantityPayForSomeQuantity((BuySomeQuantityPayForSomeQuantity) oldObject);
+	}
+	
 	public void setRelatedItems(List<BasketItem> items) {
 		this.basketItems = items;
 	}
@@ -32,6 +44,14 @@ public class BuySomeQuantityPayForSomeQuantity implements Discount {
 		}
 		int itemsToBePaid = (totalItems / buyQuantity) * payQuantity + (totalItems % buyQuantity);
 		return itemsToBePaid * basketItems.get(0).getItem().getUnitPrice();
+	}
+
+	public int getBuyQuantity() {
+		return buyQuantity;
+	}
+
+	public int getPayQuantity() {
+		return payQuantity;
 	}
 
 }
