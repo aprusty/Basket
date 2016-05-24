@@ -8,7 +8,5 @@ import com.rbc.basket.BasketItem;
  * All the discount model classes need to implement this interface.
  */
 public interface Discount {
-	void setRelatedItems(List<BasketItem> items);
-	float discountedValue();
-	Discount getNewCopy(Discount oldObject);
+	float discountedValue(List<BasketItem> basketItems);
 }

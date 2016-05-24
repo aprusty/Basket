@@ -14,8 +14,7 @@ import com.rbc.basket.discount.Discount;
  * But the deal is to pay only £3.00 for all three together.
  */
 public class CombinedFixedPrice implements Discount {
-    List<BasketItem> basketItems;
-	String discountId1;
+    String discountId1;
 	String discountId2;
 	String discountId3;
 	float combinedValue;
@@ -27,26 +26,7 @@ public class CombinedFixedPrice implements Discount {
 		this.combinedValue = totalValue;
 	}
 
-	/** 
-	 * Copy constructor. No need for defensive copy as we are only dealing with immutable members
-	 * @param oldObject
-	 */
-	public CombinedFixedPrice(CombinedFixedPrice oldObject) {
-		this(oldObject.getDiscountId1(), 
-				oldObject.getDiscountId2(), 
-				oldObject.getDiscountId3(), 
-				oldObject.getCombinedValue());
-	}
-	
-	public CombinedFixedPrice getNewCopy(Discount oldObject) {
-		return new CombinedFixedPrice((CombinedFixedPrice) oldObject);
-	}
-	
-	public void setRelatedItems(List<BasketItem> items) {
-		this.basketItems = items;
-	}
-
-	public float discountedValue() {
+	public float discountedValue(List<BasketItem> basketItems) {
 		float discountedValue = 0;
 		int discountedItems1 = 0;
 		int discountedItems2 = 0;

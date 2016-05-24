@@ -14,30 +14,13 @@ import com.rbc.basket.discount.Discount;
 public class BuySomeQuantityPayForSomeQuantity implements Discount {
 	int buyQuantity;
 	int payQuantity;
-	List<BasketItem> basketItems;
 	
 	public BuySomeQuantityPayForSomeQuantity(int buyQuantity, int payQuantity) {
 		this.buyQuantity = buyQuantity;
 		this.payQuantity = payQuantity;
 	}
 
-	/** 
-	 * Copy constructor. No need for defensive copy as we are only dealing with immutable members
-	 * @param oldObject
-	 */
-	public BuySomeQuantityPayForSomeQuantity(BuySomeQuantityPayForSomeQuantity oldObject) {
-		this(oldObject.getBuyQuantity(), oldObject.getPayQuantity());
-	}
-	
-	public BuySomeQuantityPayForSomeQuantity getNewCopy(Discount oldObject) {
-		return new BuySomeQuantityPayForSomeQuantity((BuySomeQuantityPayForSomeQuantity) oldObject);
-	}
-	
-	public void setRelatedItems(List<BasketItem> items) {
-		this.basketItems = items;
-	}
-	
-	public float discountedValue() {
+	public float discountedValue(List<BasketItem> basketItems) {
 		int totalItems = 0;
 		for (BasketItem item : basketItems) {
 			totalItems = totalItems + item.getUnits();

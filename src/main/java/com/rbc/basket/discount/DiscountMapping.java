@@ -33,7 +33,6 @@ public class DiscountMapping {
 	 * @return : returns a new copy everytime as these model classes are not immutable
 	 */
 	public static Discount getDiscountModel(String discountId) {
-		Discount discount = discountMappings.get(discountId);
-		return discount == null ? null : discount.getNewCopy(discount);
+		return discountMappings.get(discountId);
 	}
 }

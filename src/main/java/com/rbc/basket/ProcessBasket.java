@@ -80,8 +80,8 @@ public class ProcessBasket {
 		if (discount == null) 
 			throw new DiscountNotFoundException("Discount details not found for discount Code: " + discountCode);
 
-		discount.setRelatedItems(Arrays.asList(basketItem));
-		return discount.discountedValue();
+//		discount.setRelatedItems(Arrays.asList(basketItem));
+		return discount.discountedValue(Arrays.asList(basketItem));
 	}
 
 	/**
@@ -98,7 +98,6 @@ public class ProcessBasket {
 		if (discount == null) 
 			throw new DiscountNotFoundException("Parent Discount details not found for discount Code: " + parentDiscountCode);
 
-		discount.setRelatedItems(basketItems);
-		return discount.discountedValue();
+		return discount.discountedValue(basketItems);
 	}
 }
